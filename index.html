@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Product Page - Affiliate Marketing on Daraz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --daraz-orange: #F57224; /* Official-style Daraz Orange */
+            --daraz-dark: #D0611E;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FFFFFF url('images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        header {
+            background-color: rgba(245, 114, 36, 0.95); /* Daraz Orange with slight transparency */
+            color: #FFFFFF; /* White text looks better on Orange */
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+        }
+        header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 32px; /* Slightly larger */
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .search-bar {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        #initial-message {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--daraz-orange);
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid var(--daraz-orange);
+            display: inline-block; /* Centers the box nicely */
+            box-shadow: 0 4px 10px rgba(245, 114, 36, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .search-bar input {
+            padding: 15px 50px 15px 20px;
+            width: 100%;
+            max-width: 400px;
+            border: 2px solid var(--daraz-orange);
+            border-radius: 30px;
+            font-size: 18px;
+            font-family: 'Roboto', sans-serif;
+            box-shadow: 0 4px 10px rgba(245, 114, 36, 0.1);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        .search-bar input:focus {
+            box-shadow: 0 4px 15px rgba(245, 114, 36, 0.4);
+            transform: scale(1.01);
+        }
+        .search-bar::after {
+            content: '🔍';
+            position: absolute;
+            right: calc(50% - 180px); /* Centers icon relative to input width */
+            top: 68%; /* Adjusted for alignment */
+            transform: translateY(-50%);
+            color: var(--daraz-orange);
+            font-size: 20px;
+            pointer-events: none;
+        }
+        /* Mobile adjustment for icon */
+        @media (max-width: 450px) {
+            .search-bar::after {
+                right: 30px;
+            }
+        }
+        #message {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #FF0000;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 10px;
+            display: none;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid automatic */
+            gap: 25px;
+        }
+        .product-card {
+            background-color: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .product-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+        .product-title {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .product-description {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .product-price {
+            font-size: 1.4em;
+            color: var(--daraz-orange);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .affiliate-button {
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: var(--daraz-orange);
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(245, 114, 36, 0.3);
+            animation: btnPulse 2s infinite; /* Pulsing Animation */
+        }
+        @keyframes btnPulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 114, 36, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(245, 114, 36, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 114, 36, 0); }
+        }
+        .affiliate-button:hover {
+            background-color: var(--daraz-dark);
+            animation: none; /* Stop pulsing on hover */
+            transform: scale(1.05);
+        }
+        footer {
+            background-color: #333;
+            color: #FFF;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Daraz Affiliate Best Sellers</h1>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+            <div id="initial-message">Enter a Product Number below</div>
+            <br>
+            <input type="text" id="search" placeholder="Search by number (e.g., 1)">
+            <div id="message"></div>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/280x280?text=Fashion+Item" alt="Product 1" class="product-image">
+                <h3 class="product-title">1. Trendy Smart Watch</h3>
+                <p class="product-description">Feature-packed smartwatch with heart rate monitor and waterproof design.</p>
+                <p class="product-price">Rs. 2,499</p>
+                <a href="#" class="affiliate-button" target="_blank">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/280x280?text=Tech+Gadget" alt="Product 2" class="product-image">
+                <h3 class="product-title">2. Wireless Earbuds</h3>
+                <p class="product-description">High-fidelity sound with noise cancellation and long battery life.</p>
+                <p class="product-price">Rs. 1,850</p>
+                <a href="#" class="affiliate-button" target="_blank">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/280x280?text=Home+Decor" alt="Product 3" class="product-image">
+                <h3 class="product-title">3. LED Desk Lamp</h3>
+                <p class="product-description">Modern minimalist lamp with adjustable brightness levels.</p>
+                <p class="product-price">Rs. 999</p>
+                <a href="#" class="affiliate-button" target="_blank">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/280x280?text=Beauty+Kit" alt="Product 4" class="product-image">
+                <h3 class="product-title">4. Skincare Set</h3>
+                <p class="product-description">Complete organic skincare set for glowing and healthy skin.</p>
+                <p class="product-price">Rs. 3,200</p>
+                <a href="#" class="affiliate-button" target="_blank">Buy Now</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Affiliate Store. Prices subject to change on Daraz.</p>
+    </footer>
+    <script>
+        const searchInput = document.getElementById('search');
+        const initialMessage = document.getElementById('initial-message');
+        const messageDiv = document.getElementById('message');
+
+        searchInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            const query = this.value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
+            let hasMatch = false;
+
+            cards.forEach(card => {
+                const title = card.querySelector('.product-title').textContent.toLowerCase();
+                if (title.startsWith(query) && query !== '') {
+                    card.style.display = 'block';
+                    hasMatch = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (query === '') {
+                cards.forEach(card => card.style.display = 'block');
+                initialMessage.style.display = 'inline-block';
+                messageDiv.style.display = 'none';
+            } else if (!hasMatch) {
+                initialMessage.style.display = 'none';
+                messageDiv.textContent = 'No product found with that number';
+                messageDiv.style.display = 'block';
+            } else {
+                initialMessage.style.display = 'none';
+                messageDiv.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
